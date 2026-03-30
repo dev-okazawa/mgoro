@@ -116,9 +116,10 @@ document.addEventListener("DOMContentLoaded", function () {
             item.target = "_blank";
             item.rel = "noopener noreferrer";
 
-            image.src = "photos/" + filename;
+            image.src = "photos/thumbs/" + filename;
             image.alt = "E34 535i photo " + (index + 1);
             image.loading = "lazy";
+            image.decoding = "async";
 
             item.appendChild(image);
             grid.appendChild(item);
