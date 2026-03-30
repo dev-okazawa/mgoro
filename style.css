@@ -301,10 +301,18 @@ td, th {
         padding: 12px 10px;
     }
 
-    .photo-gallery__header,
+    .photo-gallery__header {
+        align-items: flex-start;
+    }
+
     .photo-gallery__meta {
         align-items: flex-start;
         flex-direction: column;
+        gap: 4px;
+    }
+
+    .photo-gallery__refresh {
+        align-self: flex-end;
     }
 
     .photo-gallery__grid {
