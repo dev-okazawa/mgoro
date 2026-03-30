@@ -208,6 +208,31 @@
         return { backdrop: backdrop, drawer: drawer, close: close };
     }
 
+    function createFooter() {
+        var footer = document.createElement("footer");
+        var text = document.createElement("p");
+        var year = document.createElement("span");
+
+        footer.className = "site-footer";
+        year.className = "site-footer__year";
+        year.textContent = String(new Date().getFullYear());
+        text.appendChild(year);
+        text.appendChild(document.createTextNode(" © MGORO.NET All Right Reserved."));
+        footer.appendChild(text);
+
+        return footer;
+    }
+
+    function syncFooterYear() {
+        var years = document.querySelectorAll(".site-footer__year");
+        var value = String(new Date().getFullYear());
+        var index;
+
+        for (index = 0; index < years.length; index += 1) {
+            years[index].textContent = value;
+        }
+    }
+
     function buildOfflineMenu() {
         if (!endsWithText(currentPath, "/offlinemeeting/offlinemeetingtop.html") &&
             !endsWithText(currentPath, "offlinemeetingtop.html")) {
@@ -406,8 +431,13 @@
         document.body.appendChild(drawerParts.backdrop);
         document.body.appendChild(drawerParts.drawer);
 
+        if (!document.querySelector(".site-footer")) {
+            document.body.appendChild(createFooter());
+        }
+
         wireDrawer(headerParts.toggle, drawerParts);
         buildOfflineMenu();
+        syncFooterYear();
     }
 
     if (document.readyState === "loading") {
