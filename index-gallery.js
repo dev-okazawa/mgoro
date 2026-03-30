@@ -78,30 +78,70 @@ document.addEventListener("DOMContentLoaded", function () {
         var currentIndex = 0;
         var activeImage = sliderPrimary;
         var inactiveImage = sliderSecondary;
+        var slideDelay = 3000;
+        var fadeDuration = 1100;
+        var isTransitioning = false;
 
         function setSlide(image, index) {
             image.src = "photos/" + sliderPhotos[index];
             image.alt = "E34 535i slide " + (index + 1);
         }
 
+        function preloadSlide(index, callback) {
+            var loader = new Image();
+            var source = "photos/" + sliderPhotos[index];
+
+            loader.onload = function () {
+                callback(source, index);
+            };
+            loader.src = source;
+        }
+
+        function queueNextSlide() {
+            if (sliderPhotos.length <= 1) {
+                return;
+            }
+
+            window.setTimeout(function () {
+                var nextIndex;
+                var previous;
+
+                if (isTransitioning) {
+                    queueNextSlide();
+                    return;
+                }
+
+                isTransitioning = true;
+                nextIndex = (currentIndex + 1) % sliderPhotos.length;
+
+                preloadSlide(nextIndex, function (source, loadedIndex) {
+                    inactiveImage.classList.remove("is-exiting");
+                    inactiveImage.src = source;
+                    inactiveImage.alt = "E34 535i slide " + (loadedIndex + 1);
+                    resetMotionClasses(activeImage);
+                    resetMotionClasses(inactiveImage);
+                    inactiveImage.classList.add(pickRandomMotion());
+                    inactiveImage.classList.add("is-active");
+                    activeImage.classList.add("is-exiting");
+                    activeImage.classList.remove("is-active");
+
+                    previous = activeImage;
+                    activeImage = inactiveImage;
+                    inactiveImage = previous;
+                    currentIndex = loadedIndex;
+                    window.setTimeout(function () {
+                        inactiveImage.classList.remove("is-exiting");
+                        isTransitioning = false;
+                        queueNextSlide();
+                    }, fadeDuration);
+                });
+            }, slideDelay);
+        }
+
         setSlide(activeImage, currentIndex);
         setSlide(inactiveImage, (currentIndex + 1) % sliderPhotos.length);
         activeImage.classList.add(pickRandomMotion());
-        if (sliderPhotos.length > 1) {
-            window.setInterval(function () {
-                currentIndex = (currentIndex + 1) % sliderPhotos.length;
-                setSlide(inactiveImage, currentIndex);
-                resetMotionClasses(activeImage);
-                resetMotionClasses(inactiveImage);
-                inactiveImage.classList.add(pickRandomMotion());
-                inactiveImage.classList.add("is-active");
-                activeImage.classList.remove("is-active");
-
-                var previous = activeImage;
-                activeImage = inactiveImage;
-                inactiveImage = previous;
-            }, 3000);
-        }
+        queueNextSlide();
     }
 
     if (!grid) {
