@@ -1,4 +1,5 @@
 (function () {
+    var assetVersion = "20260331";
     var script = document.currentScript;
     if (!script) {
         var scripts = document.getElementsByTagName("script");
@@ -112,7 +113,7 @@
             var fallbackStyle = document.createElement("link");
             var targetHead = document.head || document.getElementsByTagName("head")[0] || document.documentElement;
             fallbackStyle.rel = "stylesheet";
-            fallbackStyle.href = pathTo("style.css");
+            fallbackStyle.href = pathTo("style.css?v=" + assetVersion);
             fallbackStyle.setAttribute("data-site-menu-style", "true");
             targetHead.appendChild(fallbackStyle);
         }
