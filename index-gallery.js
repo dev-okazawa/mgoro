@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "186088.jpg",
         "186089.jpg"
     ];
+    var initialPhoto = "186032.jpg";
     var motions = [
         "motion-zoom",
         "motion-slide-left",
@@ -69,7 +70,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (sliderPrimary && sliderSecondary && photos.length) {
-        var sliderPhotos = shuffleList(photos);
+        var sliderPhotos = [initialPhoto].concat(
+            shuffleList(photos.filter(function (photo) {
+                return photo !== initialPhoto;
+            }))
+        );
         var currentIndex = 0;
         var activeImage = sliderPrimary;
         var inactiveImage = sliderSecondary;
