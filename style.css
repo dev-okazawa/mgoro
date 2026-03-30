@@ -212,6 +212,20 @@ table.list-table--wide tr {
     text-transform: uppercase;
 }
 
+.photo-gallery__refresh {
+    padding: 8px 14px;
+    border: 1px solid #c98c53;
+    border-radius: 999px;
+    background: #fff7ea;
+    color: #8e4d20;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.photo-gallery__refresh:hover {
+    background: #ffe9cf;
+}
+
 .photo-gallery__grid {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));

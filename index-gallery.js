@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var sliderPrimary = document.getElementById("top-slider-image-primary");
     var sliderSecondary = document.getElementById("top-slider-image-secondary");
     var grid = document.getElementById("photo-gallery-grid");
+    var refreshButton = document.getElementById("photo-gallery-refresh");
 
     var photos = [
         "186032.jpg",
@@ -102,21 +103,33 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    var selected = shuffleList(photos).slice(0, 20);
-    selected.forEach(function (filename, index) {
-        var item = document.createElement("a");
-        var image = document.createElement("img");
+    function renderGallery() {
+        var selected = shuffleList(photos).slice(0, 20);
+        grid.innerHTML = "";
 
-        item.className = "photo-gallery__item";
-        item.href = "photos/" + filename;
-        item.target = "_blank";
-        item.rel = "noopener noreferrer";
+        selected.forEach(function (filename, index) {
+            var item = document.createElement("a");
+            var image = document.createElement("img");
 
-        image.src = "photos/" + filename;
-        image.alt = "E34 535i photo " + (index + 1);
-        image.loading = "lazy";
+            item.className = "photo-gallery__item";
+            item.href = "photos/" + filename;
+            item.target = "_blank";
+            item.rel = "noopener noreferrer";
 
-        item.appendChild(image);
-        grid.appendChild(item);
-    });
+            image.src = "photos/" + filename;
+            image.alt = "E34 535i photo " + (index + 1);
+            image.loading = "lazy";
+
+            item.appendChild(image);
+            grid.appendChild(item);
+        });
+    }
+
+    renderGallery();
+
+    if (refreshButton) {
+        refreshButton.addEventListener("click", function () {
+            renderGallery();
+        });
+    }
 });
