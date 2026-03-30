@@ -203,6 +203,12 @@ table.list-table--wide tr {
     margin-bottom: 12px;
 }
 
+.photo-gallery__meta {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
 .photo-gallery__title {
     margin: 0;
     color: #8e4d20;
@@ -210,6 +216,13 @@ table.list-table--wide tr {
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
+}
+
+.photo-gallery__updated {
+    margin: 0;
+    color: #8f846f;
+    font-size: 11px;
+    white-space: nowrap;
 }
 
 .photo-gallery__refresh {
@@ -266,6 +279,12 @@ td, th {
 
     .photo-gallery {
         padding: 12px 10px;
+    }
+
+    .photo-gallery__header,
+    .photo-gallery__meta {
+        align-items: flex-start;
+        flex-direction: column;
     }
 
     .photo-gallery__grid {
