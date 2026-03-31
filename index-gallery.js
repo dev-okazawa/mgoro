@@ -136,7 +136,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     inactiveImage.classList.remove("is-exiting");
                     inactiveImage.src = source;
                     inactiveImage.alt = "E34 535i slide " + (loadedIndex + 1);
-                    resetMotionClasses(activeImage);
                     resetMotionClasses(inactiveImage);
                     inactiveImage.classList.add(pickRandomMotion());
                     inactiveImage.classList.add("is-active");
@@ -149,6 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     currentIndex = loadedIndex;
                     window.setTimeout(function () {
                         inactiveImage.classList.remove("is-exiting");
+                        resetMotionClasses(inactiveImage);
                         isTransitioning = false;
                         queueNextSlide();
                     }, fadeDuration);
