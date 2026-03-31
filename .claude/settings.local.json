@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls /Users/pismo/Desktop/mgoro/HTML/photos/*.jpg)",
+      "Bash(xargs -I{} basename {} .jpg)"
+    ]
+  }
+}
