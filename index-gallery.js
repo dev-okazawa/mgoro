@@ -140,7 +140,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setSlide(activeImage, currentIndex);
         setSlide(inactiveImage, (currentIndex + 1) % sliderPhotos.length);
-        activeImage.classList.add(pickRandomMotion());
         queueNextSlide();
     }
 
