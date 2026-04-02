@@ -73,8 +73,8 @@ table.list-table--wide th {
     text-align: center;
 }
 
-table.list-table--wide tr {
-    height: 58px;
+table.list-table td {
+    height: 60px;
 }
 
 .list-heading {
@@ -280,7 +280,7 @@ table.list-table--wide tr {
 td, th {
     word-break: break-word;
     overflow-wrap: break-word;
-    min-height: 60px;
+    height: auto;
 }
 
 /* ===================================================
