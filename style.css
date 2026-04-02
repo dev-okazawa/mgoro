@@ -280,7 +280,7 @@ table.list-table--wide tr {
 td, th {
     word-break: break-word;
     overflow-wrap: break-word;
-    height: auto !important;
+    height: 60px;
 }
 
 /* ===================================================
