@@ -1,0 +1,53 @@
+body {
+    max-width: 100%;
+    margin: 0;
+    padding: 12px;
+    background: #ffffcc;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto !important;
+    vertical-align: middle;
+}
+
+table {
+    width: min(560px, 100%) !important;
+    margin: 0 auto 16px;
+}
+
+td {
+    padding: 12px;
+    vertical-align: top;
+}
+
+body > div,
+body > p,
+body > table {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p,
+div,
+td {
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+a {
+    word-break: break-all;
+}
+
+@media (max-width: 640px) {
+    body {
+        padding: 10px;
+    }
+
+    td {
+        padding: 10px;
+    }
+}
