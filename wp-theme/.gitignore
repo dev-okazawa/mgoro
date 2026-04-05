@@ -1,0 +1,10 @@
+# 大容量ファイルはGitに含めない
+mgoro-e34/photos/
+mgoro-e34/html_source/
+mgoro-e34/maintenance/
+mgoro-e34/offlinemeeting/
+mgoro-e34/contents/
+mgoro-e34/introduction/
+*.zip
+migrate*.php
+fix-*.php
