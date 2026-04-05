@@ -38,6 +38,15 @@ function mgoro_enqueue_assets() {
 }
 add_action('wp_enqueue_scripts', 'mgoro_enqueue_assets');
 
+// ファビコン（フロント側のみ）
+function mgoro_favicon() {
+    if (is_admin()) return;
+    $theme_url = get_template_directory_uri();
+    echo '<link rel="icon" href="' . esc_url($theme_url) . '/favicon.ico" sizes="any">' . "\n";
+    echo '<link rel="icon" href="' . esc_url($theme_url) . '/favicon.png" type="image/png">' . "\n";
+}
+add_action('wp_head', 'mgoro_favicon', 2);
+
 // Google Tag Manager（head内）
 function mgoro_gtm_head() {
     ?>
