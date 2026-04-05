@@ -235,6 +235,17 @@ function mgoro_html_parse_request($wp) {
 
     global $wpdb;
 
+    // /index.html → トップページ
+    if ($path === 'index.html') {
+        $front_page_id = get_option('page_on_front');
+        if ($front_page_id) {
+            $wp->query_vars = array('page_id' => $front_page_id);
+        } else {
+            $wp->query_vars = array();
+        }
+        return;
+    }
+
     // /offlinemeeting/offlinemeetingtop.html → アーカイブ
     if ($path === 'offlinemeeting/offlinemeetingtop.html') {
         $wp->query_vars = array('post_type' => 'offline_meeting');
