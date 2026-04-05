@@ -244,11 +244,17 @@ function mgoro_html_parse_request($wp) {
     // /offlinemeeting/xxx.html or /offlinemeeting/folder/xxx.html → 個別記事
     if (preg_match('#^offlinemeeting/(?:[^/]+/)?([^/]+)\.html$#', $path, $m)) {
         $filename = $m[1];
+        // 末尾のドットを除去してから変換
+        $clean = rtrim($filename, '.');
         $candidates = array_unique(array(
             $filename,
+            $clean,
             str_replace('.', '-', $filename),
+            str_replace('.', '-', $clean),
             str_replace('_', '-', $filename),
+            str_replace('_', '-', $clean),
             str_replace(array('.', '_'), '-', $filename),
+            str_replace(array('.', '_'), '-', $clean),
         ));
 
         foreach ($candidates as $slug) {
