@@ -656,6 +656,14 @@ img.top {
     border-radius: 12px !important;
 }
 
+/* SiteSEOフローティングアイコン非表示 */
+#siteseo-ai-btn,
+.siteseo-ai-btn,
+[id*="siteseo"] > [style*="position: fixed"],
+div[style*="z-index"][style*="position: fixed"][style*="border-radius: 50%"] {
+    display: none !important;
+}
+
 /* ===================================================
    WordPress specific styles
    =================================================== */
